@@ -1,17 +1,18 @@
 import LikeButton from '../LikeButton/LikeButton';
 import './MovieCard.css';
+import { Link } from 'react-router-dom';
 
-function MovieCard({Title, Year, Poster, Type}) {
+function MovieCard({Title, Year, Poster, Type, imdbID}) {
   return (
     <article className="movie-card">
-      <button type="button" className="movie-card__poster-button" aria-label="Открыть страницу фильма «Joker»">
+      <Link to={`/movie/${imdbID}`} type="button" className="movie-card__poster-button" aria-label="Открыть страницу фильма «Joker»">
         <img
           className="movie-card__poster"
           src={`${Poster} == 'N/A' ? "Постер отсутствует" : ${Poster}`}
           alt={Title}
         />
         <span className="movie-card__type">{Type}</span>
-      </button>
+      </Link>
 
       <div className="movie-card__like">
         <LikeButton />

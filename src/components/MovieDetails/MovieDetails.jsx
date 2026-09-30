@@ -1,13 +1,46 @@
 import LikeButton from '../LikeButton/LikeButton';
 import RatingBadge from '../RatingBadge/RatingBadge';
 import './MovieDetails.css';
+import { useState, useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
 
 function MovieDetails() {
+  const { imdbID } = useParams()
+  const [movies, setMovies] = useState(null)
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState(null)
+  useEffect(() => {
+          const loadMovies = async () => {
+              try {
+                  setIsLoading(true)
+                  setError(null)
+                  const res = await fetch(
+                      "https://www.omdbapi.com/?apikey=" + import.meta.env.VITE_OMDB_API_KEY + "&s=" + imdbID,
+                  )
+                  if (!res.ok || Response.json == null) {
+                      const errorData = await res.json()
+  
+                      throw new Error(errorData.detail[0].msg || "Something is wrong")
+                  }
+                  
+                  const data = await res.json()
+                  console.log(data)
+                  setMovies(data.docs)
+              } catch (error) {
+                  console.error(error)
+                  setError(error.message)
+              } finally {
+                  setIsLoading(false)
+              }
+  
+          }
+          loadMovies()
+      }, [imdbID])
   return (
     <article className="movie-details">
-      <button type="button" className="movie-details__back">
+      <Link to="/" type="button" className="movie-details__back">
         ← Ко всем фильмам
-      </button>
+      </Link>
 
       <div className="movie-details__layout">
         <div className="movie-details__poster-col">
