@@ -8,7 +8,7 @@ function MovieCard({Title, Year, Poster, Type, imdbID}) {
       <Link to={`/movie/${imdbID}`} type="button" className="movie-card__poster-button" aria-label="Открыть страницу фильма «Joker»">
         <img
           className="movie-card__poster"
-          src={`${Poster} == 'N/A' ? "Постер отсутствует" : ${Poster}`}
+          src="https://avatars.mds.yandex.net/get-kinopoisk-image/1600647/f8426a65-c2d7-4c71-94bd-970b6e0eb9ad/3840x"
           alt={Title}
         />
         <span className="movie-card__type">{Type}</span>

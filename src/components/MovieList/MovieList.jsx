@@ -2,7 +2,7 @@ import MovieCard from '../MovieCard/MovieCard';
 import './MovieList.css';
 
 function MovieList({movies}) {
-  return (
+  if (movies) return (
     <ul className="movie-list">
       {movies.map((e) => {
                     const { key, ...props } = e

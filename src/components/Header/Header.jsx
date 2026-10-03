@@ -1,12 +1,12 @@
 import './Header.css';
-import { Link } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
 
 function Header() {
   
   return (
     <header className="header">
       <div className="container header__inner">
-        <Link to="#" className="header__logo">
+        <Link to="/" className="header__logo">
           <span className="header__logo-mark">OMDb</span>
           <span className="header__logo-sub">кинокаталог</span>
         </Link>

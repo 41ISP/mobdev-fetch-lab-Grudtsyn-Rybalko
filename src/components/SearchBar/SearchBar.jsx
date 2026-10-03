@@ -1,13 +1,15 @@
 import './SearchBar.css';
+import { useNavigate } from 'react-router-dom'
 
-function SearchBar({query, setQuery}) {
+function SearchBar({ query, setQuery, loadMovies }) {
+  /*const navigate = useNavigate()
   const handleSubmit = (e) => {
-        e.preventDefault()
-        if (query.trim() === '') return
-        navigate('/&s=' + encodeURIComponent(query.trim()))
-    }
+    e.preventDefault()
+    if (query.trim() === '') return
+    navigate('/&s=' + encodeURIComponent(query.trim()))
+  }*/
   return (
-    <form onSubmit={handleSubmit}  className="search-bar">
+    <form onSubmit={loadMovies} className="search-bar">
       <span className="search-bar__eyebrow">Найти фильм или сериал</span>
       <div className="search-bar__row">
         <input
@@ -17,7 +19,7 @@ function SearchBar({query, setQuery}) {
           className="search-bar__input"
           placeholder="Например: Joker, Interstellar, Dune…"
         />
-        <button type="button" className="search-bar__button">Искать</button>
+        <button type="submit" className="search-bar__button">Искать</button>
       </div>
     </form>
   );
